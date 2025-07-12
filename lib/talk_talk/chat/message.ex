@@ -126,6 +126,10 @@ defmodule TalkTalk.Chat.Message do
       # on update, only set complete to its new value
       upsert_fields [:complete]
     end
+
+    read :my_conversations do
+      filter expr(user_id == ^actor(:id))
+    end
   end
 
   pub_sub do

@@ -42,7 +42,11 @@ defmodule TalkTalk.Chat.Message.Changes.Respond do
       |> LLMChain.add_messages(message_chain)
       # add the names of tools you want available in your conversation here.
       # i.e tools: [:lookup_weather]
-      |> AshAi.setup_ash_ai(otp_app: :talk_talk, tools: [], actor: context.actor)
+      |> AshAi.setup_ash_ai(
+        otp_app: :talk_talk,
+        tools: [:my_conversations, :message_history_for_conversation],
+        actor: context.actor
+      )
       |> LLMChain.add_callback(%{
         on_llm_new_delta: fn _model, data ->
           if data.content && data.content != "" do
