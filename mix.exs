@@ -34,6 +34,8 @@ defmodule TalkTalk.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:mdex, "~> 0.7"},
+      {:ash_oban, "~> 0.4"},
       {:usage_rules, "~> 0.1"},
       {:bcrypt_elixir, "~> 3.0"},
       {:picosat_elixir, "~> 0.2"},

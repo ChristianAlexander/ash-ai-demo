@@ -7,6 +7,15 @@
 # General application configuration
 import Config
 
+config :ash_oban, pro?: false
+
+config :talk_talk, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [default: 10, chat_responses: [limit: 10], conversations: [limit: 10]],
+  repo: TalkTalk.Repo,
+  plugins: [{Oban.Plugins.Cron, []}]
+
 config :ash,
   allow_forbidden_field_for_relationships_by_default?: true,
   include_embedded_source_by_default?: false,
@@ -48,7 +57,7 @@ config :spark,
 config :talk_talk,
   ecto_repos: [TalkTalk.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: [TalkTalk.Accounts]
+  ash_domains: [TalkTalk.Chat, TalkTalk.Accounts]
 
 # Configures the endpoint
 config :talk_talk, TalkTalkWeb.Endpoint,

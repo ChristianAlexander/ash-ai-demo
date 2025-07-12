@@ -11,6 +11,11 @@ defmodule TalkTalk.Application do
       TalkTalkWeb.Telemetry,
       TalkTalk.Repo,
       {DNSCluster, query: Application.get_env(:talk_talk, :dns_cluster_query) || :ignore},
+      {Oban,
+       AshOban.config(
+         Application.fetch_env!(:talk_talk, :ash_domains),
+         Application.fetch_env!(:talk_talk, Oban)
+       )},
       {Phoenix.PubSub, name: TalkTalk.PubSub},
       # Start a worker by calling: TalkTalk.Worker.start_link(arg)
       # {TalkTalk.Worker, arg},

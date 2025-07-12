@@ -1,4 +1,5 @@
 import Config
+config :talk_talk, Oban, testing: :manual
 config :talk_talk, token_signing_secret: "UmxZa0AvM0uGAsyLhMeS1NNG5JEEw2ZM"
 config :bcrypt_elixir, log_rounds: 1
 config :ash, policies: [show_policy_breakdowns?: true]

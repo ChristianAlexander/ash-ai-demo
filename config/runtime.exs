@@ -1,4 +1,5 @@
 import Config
+config :langchain, openai_key: fn -> System.fetch_env!("OPENAI_API_KEY") end
 
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
