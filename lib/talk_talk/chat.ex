@@ -1,5 +1,19 @@
 defmodule TalkTalk.Chat do
-  use Ash.Domain, otp_app: :talk_talk, extensions: [AshPhoenix]
+  use Ash.Domain, otp_app: :talk_talk, extensions: [AshPhoenix, AshAi]
+
+  tools do
+    tool :my_conversations, TalkTalk.Chat.Conversation, :my_conversations do
+      description """
+      List the conversations available to the current user.
+      """
+    end
+
+    tool :message_history_for_conversation, TalkTalk.Chat.Message, :for_conversation do
+      description """
+      Retrieve the message history for a specific conversation.
+      """
+    end
+  end
 
   resources do
     resource TalkTalk.Chat.Conversation do
